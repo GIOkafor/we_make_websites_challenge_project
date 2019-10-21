@@ -10,8 +10,13 @@
     text-align: center;
   }
 
-  .collection-title{
+  .collection-title,
+  .product-title,
+  .add-to-cart-btn{
     color: #003366;
+  }
+
+  .collection-title{
     font-size: 40px;
   }
 
@@ -29,7 +34,6 @@
   }
 
   h5.product-title{
-    color: #003366;
     font-size: 21px;
     line-height: 26px;
     width: 275px;
@@ -42,7 +46,6 @@
 
   .add-to-cart-btn{
     background-color: #FFFFFF;
-    color: #003366;
     font-size: 18px;
     font-weight: bold;
     width: 240px;
