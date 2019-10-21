@@ -5,5 +5,119 @@
  *
  */
 .featured-collection {
-  
+  .collection-title,
+  .collection-description{
+    text-align: center;
+  }
+
+  .collection-title{
+    color: #003366;
+    font-size: 40px;
+  }
+
+  .collection-description{
+    color: #BBBBBB;
+    margin: 0 auto 20px;
+  }
+
+  .carousel-cell{
+      img{
+        width: 275px;
+        margin-right: 10px;
+        display: block;
+      }
+  }
+
+  h5.product-title{
+    color: #003366;
+    font-size: 21px;
+    line-height: 26px;
+    width: 275px;
+  }
+
+  .product-price{
+    color: #9B9B9B;
+    font-size: 18px;
+  }
+
+  .add-to-cart-btn{
+    background-color: #FFFFFF;
+    color: #003366;
+    font-size: 18px;
+    font-weight: bold;
+    width: 240px;
+    align-self: center;
+    text-align: center;
+    position: relative;
+    bottom: 150px;
+    padding: 5px 15px;
+    margin: 0 auto;
+  }
+
+  .view-collection{
+    height: 55px;
+    width: 175px;
+    font-size: 18px;
+  }
+
+  .primary-button,
+  .sale-badge{
+    background-color: #003366;
+    color: #fff;
+    font-weight: bold;
+  }
+
+  .primary-button{
+    font-size: 18px;
+    width: 175px;
+    height: 55px;
+  }
+
+  .sale-badge{
+    height: 27px;
+    width: 56px;
+    text-align: center;
+    font-size: 14px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+}
+
+.flickity-page-dots{
+    bottom: 25px !important;
+}
+
+
+//reveal hidden button
+.reveal .hidden { display: block !important; visibility: visible !important;}
+.product:hover .reveal img { opacity: 1; }
+.reveal { position: relative; }
+.reveal .hidden { 
+  width: 240px; 
+  height: 40px;  
+  opacity: 0;
+  -webkit-transition: opacity 0.3s ease-in-out;
+  -moz-transition: opacity 0.3s ease-in-out;
+  -o-transition: opacity 0.3s ease-in-out;
+  transition: opacity 0.3s ease-in-out;  
+}
+.reveal:hover .hidden { 
+  z-index: 100000;
+  opacity: 1;    
+}
+
+@media screen and (max-width: 450px){
+    .collection-description{
+        font-size: 14px;
+    }
+    .product-title{
+        font-size: 16px;
+    }
+}
+@media screen and (min-width: 451px){
+    .collection-description{
+        width: 611px;
+        font-size: 18px;
+    }
 }

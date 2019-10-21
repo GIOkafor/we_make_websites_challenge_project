@@ -6,34 +6,64 @@
 ------------------------------------------------------------------------------
 {% endcomment %}
 
+<head>
+  <!-- CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <!-- JavaScript -->
+  <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+</head>
+
 <section class="featured-collection" data-section-id="{{ section.id }}" data-section-type="featured-collection">
   {%- assign collection = collections[section.settings.collection] -%}
 
-  <h2>{{ collection.title | escape }}</h2>
+  <h2 class="collection-title">{{ collection.title | escape }}</h2>
 
-  <p>{{ collection.description }}</p>
+  <p class="collection-description">{{ collection.description }}</p>
 
-  {% for product in collection.products limit: 6 %}
-    {% assign current_variant = product.selected_or_first_available_variant %}
+  <div class="container">
+    <div 
+      class="main-carousel"
+      data-flickity='{ "draggable": true, "contain": true, "pageDots": false }'>
+      {% for product in collection.products limit: 6 %}
+        {% assign current_variant = product.selected_or_first_available_variant %}
+      
+        <div class="carousel-cell reveal">
+          <a href="{{ product.url | within: collection }}">
+            <div class="d-flex flex-column">
+          
+              {% for tag in product.tags %}
+                {% if tag == 'badge: sale' %}
+                  <div class="sale-badge">
+                    {{ tag | remove: "badge: " | capitalize}}
+                  </div>
+                {% endif %}
+              {% endfor %}
+
+              {% if product.featured_image != blank %}
+                {{ product.featured_image | img_url: 'large' | img_tag }}
+              {% endif %}
+            </div>
+
+            <div>
+              <h5 class="product-title">{{ product.title | escape }}</h5>
+
+              <span class="product-price">
+                {% include 'product-price'%}
+              </span>
+            </div>
+          </a>
+
+          <span class="btn add-to-cart-btn hidden" js-ajax-cart="addToCart" data-variant-id="{{ current_variant.id }}" data-quantity="1">Add to cart</span>
+        </div>
+      {% endfor %}  
+    </div>
+  </div>
+
+  <div class="d-flex justify-content-center mt-5 mb-5">
+    <button class="btn view-collection-button p-3 primary-button">View Collection</button>
+  </div>
   
-    <a href="{{ product.url | within: collection }}">
-      <div>
-        {% if product.featured_image != blank %}
-          {{ product.featured_image | img_url: 'large' | img_tag }}
-        {% endif %}
-        
-        <span js-ajax-cart="addToCart" data-variant-id="{{ current_variant.id }}" data-quantity="1">Add to cart</span>
-      </div>
-
-      <div>
-        <p>{{ product.title | escape }}</p>
-
-        <span>
-          {% include 'product-price' %}
-        </span>
-      </div>
-    </a>
-  {% endfor %}
 </section>
 
 {% schema %}
